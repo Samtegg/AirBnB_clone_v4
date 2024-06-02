@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-W3C validator for Holberton School
+ This is the W3C validator for Holberton School
 
 For HTML and CSS files.
 
@@ -34,8 +34,11 @@ References
 https://developer.mozilla.org/en-US/
 
 """
+
+
 import sys
 import requests
+
 
 
 def __print_stdout(msg):
@@ -50,6 +53,8 @@ def __print_stderr(msg):
     sys.stderr.write(msg)
 
 
+
+
 def __analyse_html(file_path):
     """Start analyse of HTML file
     """
@@ -62,6 +67,7 @@ def __analyse_html(file_path):
     for m in messages:
         res.append("[{}:{}] {}".format(file_path, m['lastLine'], m['message']))
     return res
+
 
 
 def __analyse_css(file_path):
