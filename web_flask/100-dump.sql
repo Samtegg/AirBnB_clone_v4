@@ -15,6 +15,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+
 -- Drop database
 DROP DATABASE IF EXISTS hbnb_dev_db;
 
@@ -28,9 +30,13 @@ FLUSH PRIVILEGES;
 
 USE hbnb_dev_db;
 
+
+
 --
 -- Table structure for table `amenities`
 --
+
+
 
 DROP TABLE IF EXISTS `amenities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -47,6 +53,7 @@ CREATE TABLE `amenities` (
 --
 -- Dumping data for table `amenities`
 --
+
 
 LOCK TABLES `amenities` WRITE;
 /*!40000 ALTER TABLE `amenities` DISABLE KEYS */;
