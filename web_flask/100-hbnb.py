@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Starts a Flash Web Application """
+""" This Starts a Flash Web Application """
 from models import storage
 from models.state import State
 from models.city import City
@@ -12,10 +12,13 @@ app = Flask(__name__)
 # app.jinja_env.lstrip_blocks = True
 
 
+
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
     storage.close()
+
+
 
 
 @app.route('/hbnb', strict_slashes=False)
@@ -25,6 +28,7 @@ def hbnb():
     states = sorted(states, key=lambda k: k.name)
     st_ct = []
 
+    
     for state in states:
         st_ct.append([state, sorted(state.cities, key=lambda k: k.name)])
 
@@ -38,6 +42,7 @@ def hbnb():
                            states=st_ct,
                            amenities=amenities,
                            places=places)
+
 
 
 if __name__ == "__main__":
