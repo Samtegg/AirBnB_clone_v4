@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-""" console """
+""" The console """
+
+
+
 
 import cmd
 from datetime import datetime
@@ -13,8 +16,12 @@ from models.state import State
 from models.user import User
 import shlex  # for splitting the line along spaces except in double quotes
 
+
+
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
+
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -54,6 +61,8 @@ class HBNBCommand(cmd.Cmd):
                 new_dict[key] = value
         return new_dict
 
+
+           
     def do_create(self, arg):
         """Creates a new instance of a class"""
         args = arg.split()
@@ -69,6 +78,8 @@ class HBNBCommand(cmd.Cmd):
         print(instance.id)
         instance.save()
 
+
+           
     def do_show(self, arg):
         """Prints an instance as a string based on the class and id"""
         args = shlex.split(arg)
@@ -87,6 +98,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+           
     def do_destroy(self, arg):
         """Deletes an instance based on the class and id"""
         args = shlex.split(arg)
@@ -105,6 +117,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+           
     def do_all(self, arg):
         """Prints string representations of instances"""
         args = shlex.split(arg)
@@ -122,6 +135,8 @@ class HBNBCommand(cmd.Cmd):
         print(", ".join(obj_list), end="")
         print("]")
 
+
+           
     def do_update(self, arg):
         """Update an instance based on the class name, id, attribute & value"""
         args = shlex.split(arg)
@@ -159,6 +174,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
         else:
             print("** class doesn't exist **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
