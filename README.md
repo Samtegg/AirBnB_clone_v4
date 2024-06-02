@@ -1,216 +1,84 @@
-# AirBnB Clone V4
+0x06. AirBnB clone - Web dynamic
+Python
+Front-end
+JavaScript
+ Weight: 2
+ Project to be done in teams of 2 people (your team: Babalola Taiwo, Simon Osime)
+ Project will start May 30, 2024 6:00 AM, must end by Jun 3, 2024 6:00 AM
+ Checker was released at May 31, 2024 6:00 AM
+ Manual QA review must be done (request it when you are done with the project)
+ An auto review will be launched at the deadline
+Concepts
+For this project, we expect you to look at this concept:
 
-This is a complete full-stack web application, integrating a MySQL database and Flask RESTful API with a dynamic HTML5/CSS3/jQuery front-end.
+AirBnB clone
+Resources
+Read or watch:
 
-It was based off the basic characteristics of the Airbnb platform.
+Selector
+Get and set content
+Manipulate CSS classes
+Manipulate DOM elements
+Document ready
+Introduction
+GET & POST request
+HTTP access control (CORS)
+Learning Objectives
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
-![](./readme_images/web_dynamic_diagram.png)
+General
+How cool it is to request your own API
+How to modify an HTML element style
+How to get and update an HTML element content
+How to modify the DOM
+How to make a GET request with JQuery Ajax
+How to make a POST request with JQuery Ajax
+How to listen/bind to DOM events
+How to listen/bind to user events
+Copyright - Plagiarism
+You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.
+You will not be able to meet the objectives of this or any following project by copying and pasting someone else’s work.
+You are not allowed to publish any content of this project.
+Any form of plagiarism is strictly forbidden and will result in removal from the program.
+Requirements
+General
+Allowed editors: vi, vim, emacs
+All your files will be interpreted on Chrome (version 57.0)
+All your files should end with a new line
+A README.md file, at the root of the folder of the project, is mandatory
+Your code should be semistandard compliant with the flag --global $: semistandard *.js --global $
+All your JavaScript must be in the folder scripts
+You must use JQuery version 3.x
+You are not allowed to use var
+HTML should not reload for each action: DOM manipulation, update values, fetch data…
+GitHub
+There should be one project repository per group. If you clone/fork/whatever a project repository with the same name before the second deadline, you risk a 0% score.
 
-# Iterations
+More Info
+Import JQuery
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+Before starting the project…
+You will work on a codebase using Flasgger, you will need to install it locally first before starting the RestAPI:
 
-The project was developed in several iterations, being V4 the last one. This iterations encompassed several concepts and integrations that will be explained below.
+$ sudo apt-get install -y python3-lxml
+$ sudo pip3 install flask_cors # if it was not installed yet
+$ sudo pip3 install flasgger
+If the RestAPI is not starting, please read the error message. Based on the(ses) error message(s), you will have to troubleshoot potential dependencies issues.
 
-## The Console
+Here some solutions:
 
-The first iteration of the project consisted on building an interactive console in order to allow for development testing.
+jsonschema exception
+$ sudo pip3 uninstall -y jsonschema 
+$ sudo pip3 install jsonschema==3.0.1
+No module named 'pathlib2'
+$ sudo pip3 install pathlib2
+Expose ports from your Vagrant
+In your Vagrantfile, add this line for each port forwarded
 
-![The Console](./readme_images/the_console_diagram.png)
+# I expose the port 5001 of my vm to the port 5001 on my computer
+config.vm.network :forwarded_port, guest: 5001, host: 5001 
+if you need to expose other ports, same line but you will need to replace the “guest port” (inside your vagrant) and your “host port” (outside your vagrant, used from your browser for example)
 
-The Console was coded in order to work with a temporary storage engine based on JSON, and included the next features:
-
-- Create a new object (ex: a new User or a new Place)
-- Retrieve an object from a file, a database etc…
-- Do operations on objects (count, compute stats, etc…)
-- Update attributes of an object
-- Destroy an object
-
-The console has 2 modes.
-
-**Interactive**
-
-```
-$ ./console.py
-(hbnb) help
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-
-(hbnb)
-(hbnb)
-(hbnb) quit
-$
-```
-
-**Non Interactive**
-
-```
-$ echo "help" | ./console.py
-(hbnb)
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb)
-$
-$ cat test_help
-help
-$
-$ cat test_help | ./console.py
-(hbnb)
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb)
-$
-```
-
-## Web Static
-
-This part of the project consisted in building the basic CSS and HTML source code.
-
-![](./readme_images/web_static_diagram.png)
-
-![](./readme_images/web_static.png)
-
-## MySQL
-
-This section consisted on the data modeling for the relational database in MySQL.
-
-![](./readme_images/mysql_diagram.png)
-
-![](./readme_images/mysql_model.jpg)
-
-## Web Framework
-
-This iteration consisted on building the first approach to dynamic content for the application by using Flask and Jinja, and effectively having Server Side Render.
-
-For this development, the MySQL database started being used in order to serve content to the client, and provide it with back end based features.
-
-All of the HTML and CSS source code started being hosted in the server, and no items were hard coded, but instead produced through dynamic data integration.
-
-![](./readme_images/web_framework.jpg)
-
-![](./readme_images/web_framework_diagram.png)
-
-## RESTful API
-
-Although the Server Side Render with Flask and Jinja was interesting, this section consisted on developing a different approach to dynamic content generation, starting with a RESTful API.
-
-This Application Programming Interface was built with Flask and SQLAlchemy in order to work with MySQL and respond to HTTP requests.
-
-![](./readme_images/restful_api_diagram.png)
-
-The endpoints can be seen below.
-
-    GET /api/v1/status
-    **Returns the status of the API
-
-    GET /api/v1/stats
-    **Retrieves the number of each objects by type
-    GET /api/v1/states
-    **Retrieves the list of all State objects
-
-    GET /api/v1/states/<state_id>
-    **Retrieves a State object
-    DELETE /api/v1/states/<state_id>
-    **Deletes a State object
-    POST /api/v1/states
-    **Creates a State
-    PUT /api/v1/states/<state_id>
-    **Updates a State object
-
-    GET /api/v1/states/<state_id>/cities
-    **Retrieves the list of all City objects of a State
-    GET /api/v1/cities/<city_id>
-    **Retrieves a City object
-    DELETE /api/v1/cities/<city_id>
-    Deletes a City object
-    POST /api/v1/states/<state_id>/cities
-    Creates a City
-    PUT /api/v1/cities/<city_id>
-    Updates a City object
-
-    GET /api/v1/amenities
-    **Retrieves the list of all Amenity objects
-    GET /api/v1/amenities/<amenity_id>
-    **Retrieves a Amenity object
-    DELETE /api/v1/amenities/<amenity_id>
-    **Deletes a `menity object
-    POST /api/v1/amenities
-    **Creates a Amenity
-    PUT /api/v1/amenities/<amenity_id>
-    **Updates a Amenity object
-
-    GET /api/v1/users
-    **Retrieves the list of all User objects
-    GET /api/v1/users/<user_id>
-    **Retrieves a User object
-    DELETE /api/v1/users/<user_id>
-    **Deletes a User object
-    POST /api/v1/users
-    **Creates a User
-    PUT /api/v1/users/<user_id>
-    **Updates a User object
-
-    GET /api/v1/cities/<city_id>/places
-    **Retrieves the list of all Place objects of a City
-    GET /api/v1/places/<place_id>
-    **Retrieves a Place object
-    DELETE /api/v1/places/<place_id>
-    **Deletes a Place object
-    POST /api/v1/cities/<city_id>/places
-    **Creates a Place
-    PUT /api/v1/places/<place_id>
-    **Updates a Place object
-
-    GET /api/v1/places/<place_id>/reviews
-    **Retrieves the list of all Review objects of a Place
-    GET /api/v1/reviews/<review_id>
-    **Retrieves a Review object
-    DELETE /api/v1/reviews/<review_id>
-    **Deletes a Review object
-    POST /api/v1/places/<place_id>/reviews
-    **Creates a Review
-    PUT /api/v1/reviews/<review_id>
-    **Updates a Review object
-
-    GET /api/v1/places/<place_id>/amenities
-    **Retrieves the list of all Amenity objects of a Place
-    DELETE /api/v1/places/<place_id>/amenities/<amenity_id>
-    **Deletes a Amenity` object to a Place
-    POST /api/v1/places/<place_id>/amenities/<amenity_id>
-    **Link a Amenity object to a Place
-
-    POST /api/v1/places_search
-    **Retrieves all Place objects depending of the JSON in the body of the request.
-
-    GET /apidocs
-    **Gets the documentation of the API built in Flasgger
-
-## Web Dynamic
-
-This was the final iteration of the project and consisted in changing the Server Side Render for Client Based Render using JavaScript with jQuery, and the RESTful API from before.
-
-![Image result for jquery and javascript](https://miro.medium.com/max/600/1*8Whvj5G9f5DVmCBIzywYww.png)
-
-![](./readme_images/web_dynamic_diagram.png)
-
-# Challenges and Future Features
-
-This was a big project that helped in understanding how a Fullstack application works. Some of the most challenging parts had to do with the Object Relational Mapping for the API, and the Client Based Render.
-
-For future projects, this serves as a great base for beginning to understand other technologies such as React, NodeJS, and Mongo, among others.
-
-# About Myself
-
-🎯 I am a Fullstack developer in love with technology and keen to learn new things everyday. My strenghts reside in Python and JavaScript although I am not afraid to take on any other language.
-
-🎯 I have experience developing both back end and front end. I have used technologies such as Bootstrap, SASS, React, Flask, Django, Express, SQL, MongoDB, AWS, among others.
-
-🎯 I also studied Sound Engineering some years ago, and I love music, videogames, and audiovisual media.
-
-🔹 [LinkedIn](https://www.linkedin.com/in/jhoan-stiven-zamora-caicedo/)
-
-🔹 [Twitter](https://twitter.com/JhoanZamora10)
+It’s important in your project, to use the AirBnB API with the port 5001
